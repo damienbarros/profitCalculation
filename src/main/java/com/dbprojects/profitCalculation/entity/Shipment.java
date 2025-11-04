@@ -10,26 +10,33 @@ public class Shipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String refShipemnt;
+    double profitOrLoss;
+
+    @OneToMany(mappedBy = "shipment", cascade = cascadeType.ALL, orphanRemoval = true)
     private List<Customer> customers;
+
+    @OneToMany(mappedBy = "shipment", cascade = cascadeType.ALL, orphanRemoval = true)
     private List<ServiceProvision> serviceProv;
+
 
     public Shipment() {
     }
 
-    public Shipment(int id, String refShipemnt, List<Customer> customers, List<ServiceProvision> serviceProv) {
+    public Shipment(Long id, String refShipemnt, double profitOrLoss, List<Customer> customers, List<ServiceProvision> serviceProv) {
         this.id = id;
         this.refShipemnt = refShipemnt;
+        this.profitOrLoss = profitOrLoss;
         this.customers = customers;
         this.serviceProv = serviceProv;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,6 +46,14 @@ public class Shipment {
 
     public void setRefShipemnt(String refShipemnt) {
         this.refShipemnt = refShipemnt;
+    }
+
+    public double getProfitOrLoss() {
+        return profitOrLoss;
+    }
+
+    public void setProfitOrLoss(double profitOrLoss) {
+        this.profitOrLoss = profitOrLoss;
     }
 
     public List<Customer> getCustomers() {

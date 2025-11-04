@@ -5,11 +5,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="customer")
 public class Customer {
-    public int getId() {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private double paymentAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "shipment_id")
+    private Shipment shipment;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,10 +40,11 @@ public class Customer {
         this.paymentAmount = paymentAmount;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    private double paymentAmount;
+    public Shipment getShipment() {
+        return shipment;
+    }
 
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
+    }
 }
