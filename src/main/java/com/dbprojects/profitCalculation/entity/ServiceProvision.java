@@ -3,7 +3,7 @@ package com.dbprojects.profitCalculation.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="serviceprovision")
+@Table(name="service_provision")
 public class ServiceProvision {
 
     @Id
