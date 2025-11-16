@@ -1,5 +1,6 @@
 package com.dbprojects.profitCalculation.controller;
 
+import com.dbprojects.profitCalculation.DTO.ProfitUpdateRequest;
 import com.dbprojects.profitCalculation.entity.Shipment;
 import com.dbprojects.profitCalculation.repository.ShipmentRepository;
 import com.dbprojects.profitCalculation.service.SystemService;
@@ -38,6 +39,14 @@ public class SystemController {
     @GetMapping("/shipments")
     public List<Shipment> getAllShipments() {
         return shipmentRepository.findAll();
+    }
+
+    @PutMapping("/{refShipment}/profit")
+    public Shipment updateProfit (@PathVariable String refShipment, @RequestBody ProfitUpdateRequest request) {
+        Shipment shipment = shipmentRepository.findById(Long.valueOf(refShipment)).orElseThrow(() -> new RuntimeException("Shipment not found"));
+
+        shipment.setProfitOrLoss(request.getProfitOrLoss());
+        return shipmentRepository.save(shipment);
     }
 
 }
