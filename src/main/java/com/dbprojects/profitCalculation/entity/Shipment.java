@@ -12,7 +12,7 @@ public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "reference_number")
-    private String refShipment;
+    private String shipmentNumber;
     @Column(name = "profit_or_loss")
     double profitOrLoss;
 
@@ -34,12 +34,12 @@ public class Shipment {
         this.id = id;
     }
 
-    public String getRefShipment() {
-        return refShipment;
+    public String getShipmentNumber() {
+        return shipmentNumber;
     }
 
-    public void setRefShipment(String refShipemnt) {
-        this.refShipment = refShipment;
+    public void setShipmentNumber(String shipmentNumber) {
+        this.shipmentNumber = this.shipmentNumber;
     }
 
     public double getProfitOrLoss() {
