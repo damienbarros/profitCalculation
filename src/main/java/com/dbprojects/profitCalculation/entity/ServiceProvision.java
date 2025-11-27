@@ -1,5 +1,7 @@
 package com.dbprojects.profitCalculation.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +16,7 @@ public class ServiceProvision {
 
     @ManyToOne
     @JoinColumn(name = "shipment_id")
+    @JsonIgnore
     private Shipment shipment;
 
     public Long getId() {

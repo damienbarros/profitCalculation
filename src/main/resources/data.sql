@@ -1,6 +1,6 @@
-INSERT INTO shipment (id, reference_number, profit_or_loss)
+INSERT INTO shipment (id, shipment_number, profit_or_loss)
 VALUES
-(1, 'shipment1', 0.00);
+(1, '1', 0.00);
 
 INSERT INTO customer (id, name, payment_amount, shipment_id)
 VALUES

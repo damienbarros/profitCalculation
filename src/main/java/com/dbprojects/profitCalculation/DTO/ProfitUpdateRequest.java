@@ -2,7 +2,11 @@ package com.dbprojects.profitCalculation.DTO;
 
 public class ProfitUpdateRequest {
 
-    public double profitOrLoss;
+    private double profitOrLoss;
+
+    public ProfitUpdateRequest() {
+
+    }
 
     public double getProfitOrLoss() {
         return profitOrLoss;

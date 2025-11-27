@@ -1,5 +1,6 @@
 package com.dbprojects.profitCalculation.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,15 +12,17 @@ public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "reference_number")
+    @Column(name = "shipment_number")
     private String shipmentNumber;
     @Column(name = "profit_or_loss")
     double profitOrLoss;
 
     @OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Customer> customers;
 
     @OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<ServiceProvision> serviceProv;
 
 
@@ -39,7 +42,7 @@ public class Shipment {
     }
 
     public void setShipmentNumber(String shipmentNumber) {
-        this.shipmentNumber = this.shipmentNumber;
+        this.shipmentNumber = shipmentNumber;
     }
 
     public double getProfitOrLoss() {

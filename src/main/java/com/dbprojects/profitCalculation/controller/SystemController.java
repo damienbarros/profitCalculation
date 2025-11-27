@@ -31,8 +31,8 @@ public class SystemController {
         return shipmentRepository.save(shipment);
     }
 
-    @GetMapping("/id")
-    public Optional<Shipment> getShipment(Long id) {
+    @GetMapping("/id/{id}")
+    public Optional<Shipment> getShipment(@PathVariable Long id) {
         return shipmentRepository.findById(id);
     }
 
@@ -41,12 +41,18 @@ public class SystemController {
         return shipmentRepository.findAll();
     }
 
-    @PutMapping("/{refShipment}/profit")
-    public Shipment updateProfit (@PathVariable String refShipment, @RequestBody ProfitUpdateRequest request) {
-        Shipment shipment = shipmentRepository.findById(Long.valueOf(refShipment)).orElseThrow(() -> new RuntimeException("Shipment not found"));
+    //http://localhost:8085/api/system/shipments/1/profit
+    @PutMapping("/shipments/{shipmentNumber}/profit")
+    public Shipment updateProfit(
+            @PathVariable Long shipmentNumber,
+            @RequestBody ProfitUpdateRequest request) {
+
+        Shipment shipment = shipmentRepository.findById(shipmentNumber)
+                .orElseThrow(() -> new RuntimeException("Shipment not found"));
 
         shipment.setProfitOrLoss(request.getProfitOrLoss());
         return shipmentRepository.save(shipment);
     }
+
 
 }
